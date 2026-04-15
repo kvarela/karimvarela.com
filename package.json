@@ -1,0 +1,30 @@
+{
+  "name": "karimvarela.com",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"yarn workspace @karimvarela/backend dev\" \"yarn workspace @karimvarela/web dev\"",
+    "dev:backend": "yarn workspace @karimvarela/backend dev",
+    "dev:web": "yarn workspace @karimvarela/web dev",
+    "build:shared": "yarn workspace @karimvarela/shared build",
+    "build": "yarn build:shared && yarn workspace @karimvarela/backend build && yarn workspace @karimvarela/web build",
+    "typecheck": "yarn workspaces run typecheck",
+    "lint": "yarn workspaces run lint",
+    "format": "prettier --write \"packages/**/*.{ts,tsx,json}\"",
+    "migration:generate": "yarn workspace @karimvarela/backend migration:generate",
+    "migration:run": "yarn workspace @karimvarela/backend migration:run",
+    "migration:revert": "yarn workspace @karimvarela/backend migration:revert",
+    "migration:show": "yarn workspace @karimvarela/backend migration:show"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "prettier": "^3.3.0",
+    "typescript": "^5.6.2"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "yarn": ">=1.22.0"
+  }
+}
