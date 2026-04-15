@@ -1,5 +1,5 @@
 'use client'
-import { Box, Flex, Text, IconButton } from '@chakra-ui/react'
+import { Box, Flex, Text, IconButton, chakra } from '@chakra-ui/react'
 import Link from 'next/link'
 import { useState } from 'react'
 import { useActiveSection } from '@/hooks/useActiveSection'
@@ -141,8 +141,7 @@ function NavContent({
 
       {/* Social links */}
       <Flex gap={4} mt={8}>
-        <Box
-          as="a"
+        <chakra.a
           href={SOCIAL_LINKS.linkedin}
           target="_blank"
           rel="noopener noreferrer"
@@ -152,9 +151,8 @@ function NavContent({
           aria-label="LinkedIn"
         >
           <LinkedInIcon />
-        </Box>
-        <Box
-          as="a"
+        </chakra.a>
+        <chakra.a
           href={SOCIAL_LINKS.github}
           target="_blank"
           rel="noopener noreferrer"
@@ -164,9 +162,8 @@ function NavContent({
           aria-label="GitHub"
         >
           <GitHubIcon />
-        </Box>
-        <Box
-          as="a"
+        </chakra.a>
+        <chakra.a
           href={SOCIAL_LINKS.instagram}
           target="_blank"
           rel="noopener noreferrer"
@@ -176,7 +173,7 @@ function NavContent({
           aria-label="Instagram"
         >
           <InstagramIcon />
-        </Box>
+        </chakra.a>
       </Flex>
     </Flex>
   )

@@ -1,4 +1,4 @@
-import { Box, Grid, Flex, Text } from '@chakra-ui/react'
+import { Box, Grid, Flex, Text, chakra } from '@chakra-ui/react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { MatrixRain } from '@/components/ui/MatrixRain'
@@ -170,8 +170,7 @@ export default function MotoVenicePage() {
             </Text>
 
             <Flex justify="center" gap={4} flexWrap="wrap" mb={6}>
-              <Box
-                as="a"
+              <chakra.a
                 href={SOCIAL_LINKS.motoVeniceWebsite}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -196,10 +195,9 @@ export default function MotoVenicePage() {
               >
                 Book a Ride
                 <ExternalLinkIcon />
-              </Box>
+              </chakra.a>
 
-              <Box
-                as="a"
+              <chakra.a
                 href={SOCIAL_LINKS.motoVeniceInstagram}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -223,7 +221,7 @@ export default function MotoVenicePage() {
               >
                 <InstagramIcon />
                 @moto_venice
-              </Box>
+              </chakra.a>
             </Flex>
 
             {/* Stats */}
@@ -512,20 +510,18 @@ export default function MotoVenicePage() {
               lineHeight={1.7}
             >
               Visit{' '}
-              <Box
-                as="a"
+              <chakra.a
                 href={SOCIAL_LINKS.motoVeniceWebsite}
                 color="#00ff41"
                 _hover={{ color: '#39ff14' }}
               >
                 motovenice.com
-              </Box>{' '}
+              </chakra.a>{' '}
               to check availability and reserve your bike online. Questions? Hit us up on Instagram.
             </Text>
 
             <Flex justify="center" gap={4} flexWrap="wrap">
-              <Box
-                as="a"
+              <chakra.a
                 href={SOCIAL_LINKS.motoVeniceWebsite}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -550,9 +546,8 @@ export default function MotoVenicePage() {
               >
                 Visit motovenice.com
                 <ExternalLinkIcon />
-              </Box>
-              <Box
-                as="a"
+              </chakra.a>
+              <chakra.a
                 href={SOCIAL_LINKS.motoVeniceInstagram}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -576,7 +571,7 @@ export default function MotoVenicePage() {
               >
                 <InstagramIcon />
                 Follow on Instagram
-              </Box>
+              </chakra.a>
             </Flex>
           </Box>
 

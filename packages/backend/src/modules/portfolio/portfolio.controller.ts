@@ -6,8 +6,6 @@ import { Public } from '../../common/decorators/public.decorator'
 import { Job } from '../../entities/job.entity'
 import { Education } from '../../entities/education.entity'
 import { Skill } from '../../entities/skill.entity'
-import type { PortfolioResponse } from '@karimvarela/shared'
-
 @ApiTags('portfolio')
 @Public()
 @Controller('portfolio')
@@ -16,7 +14,7 @@ export class PortfolioController {
 
   @Get()
   @ApiOperation({ summary: 'Get full portfolio — jobs, education, and skills' })
-  async findAll(): Promise<PortfolioResponse> {
+  async findAll(): Promise<{ jobs: Job[]; education: Education[]; skills: Skill[] }> {
     return this.portfolioService.findAll()
   }
 

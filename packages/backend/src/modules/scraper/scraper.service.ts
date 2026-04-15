@@ -14,6 +14,15 @@ import { BlogPost, BlogPostSource } from '../../entities/blog-post.entity'
 import { BlogTag } from '../../entities/blog-tag.entity'
 import { BlogService } from '../blog/blog.service'
 
+// ─── Cheerio DOM node type (cheerio v1 doesn't export Element directly) ──────
+
+interface DomNode {
+  tagName?: string
+  type: string
+  next: DomNode | null
+  prev?: DomNode | null
+}
+
 // ─── Medium RSS types ─────────────────────────────────────────────────────────
 
 interface MediumRssItem {
@@ -131,34 +140,36 @@ export class ScraperService implements OnModuleInit {
 
     // Collect all content between Experience heading and next same-level heading
     const experienceHeading = headings[experienceHeadingIdx]
-    const headingTag = (experienceHeading as cheerio.Element).tagName
-    const sectionElements: cheerio.Element[] = []
+    const headingTag = (experienceHeading as DomNode).tagName
+    const sectionElements: DomNode[] = []
 
-    let current = (experienceHeading as cheerio.Element).next
+    let current = (experienceHeading as DomNode).next
     while (current) {
-      if (current.type === 'tag' && (current as cheerio.Element).tagName === headingTag) {
+      if (current.type === 'tag' && (current as DomNode).tagName === headingTag) {
         break
       }
-      sectionElements.push(current as cheerio.Element)
-      current = current.next as cheerio.Element
+      sectionElements.push(current as DomNode)
+      current = current.next as DomNode
     }
 
     // Look for job blocks — typically each job starts with a company/title line
     // We'll parse bold lines as company+title and bullet lists as highlights
-    let currentJob: Partial<{
-      company: string
-      title: string
-      startDate: string
-      endDate: string | null
-      location: string
-      highlights: string[]
-    }> | null = null
+    interface ParsedJob {
+      company?: string
+      title?: string
+      startDate?: string
+      endDate?: string | null
+      location?: string
+      highlights?: string[]
+    }
 
-    const jobs: typeof currentJob[] = []
+    let currentJob: ParsedJob | null = null
+    const jobs: ParsedJob[] = []
 
     for (const el of sectionElements) {
-      const tag = (el as cheerio.Element).tagName
-      const elCheerio = $(el)
+      const tag = (el as DomNode).tagName
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const elCheerio = $(el as any)
       const text = elCheerio.text().trim()
 
       if (!text) continue
@@ -334,14 +345,14 @@ export class ScraperService implements OnModuleInit {
     }
 
     const educationHeading = headings[educationIdx]
-    const headingTag = (educationHeading as cheerio.Element).tagName
+    const headingTag = (educationHeading as DomNode).tagName
 
-    const sectionElements: cheerio.Element[] = []
-    let current = (educationHeading as cheerio.Element).next as cheerio.Element | null
+    const sectionElements: DomNode[] = []
+    let current = (educationHeading as DomNode).next as DomNode | null
     while (current) {
       if (current.type === 'tag' && current.tagName === headingTag) break
       sectionElements.push(current)
-      current = current.next as cheerio.Element | null
+      current = current.next as DomNode | null
     }
 
     interface EducationEntry {
@@ -356,8 +367,9 @@ export class ScraperService implements OnModuleInit {
     let current_entry: Partial<EducationEntry> | null = null
 
     for (const el of sectionElements) {
-      const tag = (el as cheerio.Element).tagName
-      const elCheerio = $(el)
+      const tag = (el as DomNode).tagName
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const elCheerio = $(el as any)
       const text = elCheerio.text().trim()
       if (!text) continue
 
@@ -445,21 +457,22 @@ export class ScraperService implements OnModuleInit {
     }
 
     const skillsHeading = headings[skillsIdx]
-    const headingTag = (skillsHeading as cheerio.Element).tagName
+    const headingTag = (skillsHeading as DomNode).tagName
 
-    const sectionElements: cheerio.Element[] = []
-    let current = (skillsHeading as cheerio.Element).next as cheerio.Element | null
+    const sectionElements: DomNode[] = []
+    let current = (skillsHeading as DomNode).next as DomNode | null
     while (current) {
       if (current.type === 'tag' && current.tagName === headingTag) break
       sectionElements.push(current)
-      current = current.next as cheerio.Element | null
+      current = current.next as DomNode | null
     }
 
     const skillNames = new Set<string>()
 
     for (const el of sectionElements) {
-      const elCheerio = $(el)
-      const tag = (el as cheerio.Element).tagName
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const elCheerio = $(el as any)
+      const tag = (el as DomNode).tagName
 
       if (tag === 'ul' || tag === 'ol') {
         elCheerio.find('li').each((_, li) => {

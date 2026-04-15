@@ -1,5 +1,5 @@
 'use client'
-import { Box, Flex, Text, Button } from '@chakra-ui/react'
+import { Box, Flex, Text, chakra } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import { SOCIAL_LINKS } from '@/lib/constants'
 
@@ -108,42 +108,43 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <Flex gap={4} mb={8} flexWrap="wrap">
-            <Button
-              as="a"
-              href="https://docs.google.com/document/d/1resume"
+            <chakra.a
+              href="https://docs.google.com/document/d/1jV6xFhvbxmpQYsl_ara-9Yr-5XhnBLruDCnbjoYRo0E"
               target="_blank"
               rel="noopener noreferrer"
-              size="md"
-              variant="outline"
+              display="inline-flex"
+              alignItems="center"
+              px={6}
+              py={2}
               fontFamily="var(--font-mono), monospace"
               fontSize="sm"
               color="#00ff41"
-              borderColor="#00ff41"
-              _hover={{
-                bg: 'rgba(0,255,65,0.1)',
-                boxShadow: '0 0 20px rgba(0,255,65,0.3)',
-              }}
+              border="1px solid #00ff41"
+              borderRadius="md"
               letterSpacing="0.05em"
+              transition="all 0.2s"
+              _hover={{ bg: 'rgba(0,255,65,0.1)', boxShadow: '0 0 20px rgba(0,255,65,0.3)' }}
             >
               View Resume
-            </Button>
-            <Button
-              as="a"
+            </chakra.a>
+            <chakra.a
               href="mailto:karim@karimvarela.com"
-              size="md"
+              display="inline-flex"
+              alignItems="center"
+              px={6}
+              py={2}
               fontFamily="var(--font-mono), monospace"
               fontSize="sm"
               bg="#00ff41"
               color="#0a0a0a"
               fontWeight="bold"
-              _hover={{
-                bg: '#39ff14',
-                boxShadow: '0 0 20px rgba(0,255,65,0.4)',
-              }}
+              borderRadius="md"
               letterSpacing="0.05em"
+              transition="all 0.2s"
+              _hover={{ bg: '#39ff14', boxShadow: '0 0 20px rgba(0,255,65,0.4)' }}
             >
               Contact
-            </Button>
+            </chakra.a>
           </Flex>
         </MotionBox>
 
@@ -153,8 +154,7 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.5 }}
         >
           <Flex gap={5}>
-            <Box
-              as="a"
+            <chakra.a
               href={SOCIAL_LINKS.linkedin}
               target="_blank"
               rel="noopener noreferrer"
@@ -164,9 +164,8 @@ export function HeroSection() {
               aria-label="LinkedIn"
             >
               <LinkedInIcon />
-            </Box>
-            <Box
-              as="a"
+            </chakra.a>
+            <chakra.a
               href={SOCIAL_LINKS.github}
               target="_blank"
               rel="noopener noreferrer"
@@ -176,9 +175,8 @@ export function HeroSection() {
               aria-label="GitHub"
             >
               <GitHubIcon />
-            </Box>
-            <Box
-              as="a"
+            </chakra.a>
+            <chakra.a
               href={SOCIAL_LINKS.instagram}
               target="_blank"
               rel="noopener noreferrer"
@@ -188,7 +186,7 @@ export function HeroSection() {
               aria-label="Instagram"
             >
               <InstagramIcon />
-            </Box>
+            </chakra.a>
           </Flex>
         </MotionBox>
       </Box>

@@ -114,8 +114,7 @@ Return only the JSON object, no surrounding text or code fences.`
       // The @google/generative-ai SDK exposes imagen via getGenerativeModel
       const model = this.googleAI.getGenerativeModel({ model: 'imagen-3.0-generate-001' })
 
-      // @ts-expect-error — generateImages is available on Imagen models but not typed in all SDK versions
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+      // generateImages is available on Imagen models but not typed in the generative-ai SDK
       const result = await (model as unknown as {
         generateImages: (params: {
           prompt: string

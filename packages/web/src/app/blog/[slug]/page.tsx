@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from '@chakra-ui/react'
+import { Box, Flex, Text, chakra } from '@chakra-ui/react'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
@@ -147,8 +147,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               {post.originalUrl && (
                 <>
                   <Text color="rgba(0,255,65,0.3)" fontSize="xs">•</Text>
-                  <Box
-                    as="a"
+                  <chakra.a
                     href={post.originalUrl}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -159,7 +158,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     transition="color 0.2s"
                   >
                     Original post ↗
-                  </Box>
+                  </chakra.a>
                 </>
               )}
             </Flex>

@@ -1,5 +1,5 @@
 'use client'
-import { Box, Flex, Text } from '@chakra-ui/react'
+import { Box, Flex, Text, chakra } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import type { Job } from '@karimvarela/shared'
 import { SectionHeading } from '@/components/ui/SectionHeading'
@@ -76,8 +76,7 @@ export function ExperienceSection({ jobs }: ExperienceSectionProps) {
                     >
                       @{' '}
                       {job.companyUrl ? (
-                        <Box
-                          as="a"
+                        <chakra.a
                           href={job.companyUrl}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -85,7 +84,7 @@ export function ExperienceSection({ jobs }: ExperienceSectionProps) {
                           _hover={{ color: '#39ff14', textDecoration: 'underline' }}
                         >
                           {job.company}
-                        </Box>
+                        </chakra.a>
                       ) : (
                         job.company
                       )}

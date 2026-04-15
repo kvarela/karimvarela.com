@@ -5,8 +5,6 @@ import { Repository } from 'typeorm'
 import { Job } from '../../entities/job.entity'
 import { Education } from '../../entities/education.entity'
 import { Skill } from '../../entities/skill.entity'
-import type { PortfolioResponse } from '@karimvarela/shared'
-
 @Injectable()
 export class PortfolioService {
   constructor(
@@ -49,7 +47,7 @@ export class PortfolioService {
     })
   }
 
-  async findAll(): Promise<PortfolioResponse> {
+  async findAll(): Promise<{ jobs: Job[]; education: Education[]; skills: Skill[] }> {
     const [jobs, education, skills] = await Promise.all([
       this.findJobs(),
       this.findEducation(),

@@ -1,5 +1,5 @@
 'use client'
-import { Box, Grid, Text } from '@chakra-ui/react'
+import { Box, Grid, Text, chakra } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 
@@ -52,14 +52,13 @@ export function AboutSection() {
               Outside of work you&apos;ll find me surfing at{' '}
               <Box as="span" color="#00ff41">Sunset Beach</Box>, training MMA at a local
               gym, or exploring what makes the Venice community so special. I also run{' '}
-              <Box
-                as="a"
+              <chakra.a
                 href="/personal/moto-venice"
                 color="#00ff41"
                 _hover={{ color: '#39ff14' }}
               >
                 Moto Venice
-              </Box>
+              </chakra.a>
               , a motorcycle rental experience right here in the neighborhood.
             </Text>
 
