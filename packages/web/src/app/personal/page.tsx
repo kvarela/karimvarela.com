@@ -384,7 +384,7 @@ export default function PersonalPage() {
               >
                 Check out my moto business
               </Text>
-              <Link href="/personal/moto-venice" style={{ textDecoration: 'none' }}>
+              <Link href="/moto-venice" style={{ textDecoration: 'none' }}>
                 <Box
                   display="inline-block"
                   px={8}

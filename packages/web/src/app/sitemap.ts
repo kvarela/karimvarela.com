@@ -26,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
-      url: 'https://karimvarela.com/personal/moto-venice',
+      url: 'https://karimvarela.com/moto-venice',
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.7,

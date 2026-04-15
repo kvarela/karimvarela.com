@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: 'Moto Venice — Motorcycle Rentals in Venice, CA',
     description:
       'Rent a motorcycle in Venice and explore LA. Experience the Pacific Coast Highway the way it was meant to be ridden.',
-    url: 'https://karimvarela.com/personal/moto-venice',
+    url: 'https://karimvarela.com/moto-venice',
   },
 }
 

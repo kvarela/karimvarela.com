@@ -53,7 +53,7 @@ export function AboutSection() {
               <Box as="span" color="#00ff41">Sunset Beach</Box>, training MMA at a local
               gym, or exploring what makes the Venice community so special. I also run{' '}
               <chakra.a
-                href="/personal/moto-venice"
+                href="/moto-venice"
                 color="#00ff41"
                 _hover={{ color: '#39ff14' }}
               >

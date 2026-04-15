@@ -19,5 +19,5 @@ export const PERSONAL_NAV_ITEMS = [
   { label: 'MMA', href: '#mma' },
   { label: 'Surfing', href: '#surfing' },
   { label: 'Gaming', href: '#gaming' },
-  { label: 'Moto Venice', href: '/personal/moto-venice' },
+  { label: 'Moto Venice', href: '/moto-venice' },
 ] as const
