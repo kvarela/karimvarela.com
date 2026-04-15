@@ -15,7 +15,7 @@
         "./src/*"
       ],
       "@karimvarela/shared": [
-        "../shared/src/index"
+        "../shared/dist/index"
       ]
     },
     "allowJs": true,
