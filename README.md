@@ -6,10 +6,9 @@ Personal portfolio and life site for Karim Varela — built with Next.js 14, Nes
 
 ```
 karimvarela.com/
-├── packages/
-│   ├── shared/      # Shared TypeScript types and DTOs
-│   ├── backend/     # NestJS API (port 4000)
-│   └── web/         # Next.js frontend (port 3000)
+├── shared/          # Shared TypeScript types and DTOs
+├── backend/         # NestJS API (port 4000)
+├── web/             # Next.js frontend (port 3000)
 ├── docker-compose.yml
 └── .env.example
 ```
@@ -33,10 +32,10 @@ This starts PostgreSQL on port 5432 and pgAdmin on port 5050 (login: `admin@loca
 ### 2. Configure environment variables
 
 ```bash
-cp .env.example packages/backend/.env
+cp .env.example backend/.env
 ```
 
-Open `packages/backend/.env` and fill in the values:
+Open `backend/.env` and fill in the values:
 
 - **`JWT_SECRET`** — any long random string (32+ characters)
 - **`ADMIN_PASSWORD_HASH`** — bcrypt hash of your chosen admin password:
@@ -51,7 +50,7 @@ The database URL, username, and CORS origins are pre-filled for local developmen
 Also create the web env file:
 
 ```bash
-echo "NEXT_PUBLIC_API_URL=http://localhost:4000\nAPI_URL=http://localhost:4000" > packages/web/.env.local
+echo "NEXT_PUBLIC_API_URL=http://localhost:4000\nAPI_URL=http://localhost:4000" > web/.env.local
 ```
 
 ### 3. Install dependencies

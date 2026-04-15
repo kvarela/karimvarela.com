@@ -2,7 +2,9 @@
   "name": "karimvarela.com",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "backend",
+    "shared",
+    "web"
   ],
   "scripts": {
     "dev": "concurrently \"yarn workspace @karimvarela/backend dev\" \"yarn workspace @karimvarela/web dev\"",
@@ -12,7 +14,7 @@
     "build": "yarn build:shared && yarn workspace @karimvarela/backend build && yarn workspace @karimvarela/web build",
     "typecheck": "yarn workspaces run typecheck",
     "lint": "yarn workspaces run lint",
-    "format": "prettier --write \"packages/**/*.{ts,tsx,json}\"",
+    "format": "prettier --write \"{backend,shared,web}/**/*.{ts,tsx,json}\"",
     "migration:generate": "yarn workspace @karimvarela/backend migration:generate",
     "migration:run": "yarn workspace @karimvarela/backend migration:run",
     "migration:revert": "yarn workspace @karimvarela/backend migration:revert",
