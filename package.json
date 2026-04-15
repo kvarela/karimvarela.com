@@ -17,6 +17,7 @@
     "format": "prettier --write \"{backend,shared,web}/**/*.{ts,tsx,json}\"",
     "migration:generate": "yarn workspace @karimvarela/backend migration:generate",
     "migration:run": "yarn workspace @karimvarela/backend migration:run",
+    "migration:run:prod": "yarn workspace @karimvarela/backend migration:run:prod",
     "migration:revert": "yarn workspace @karimvarela/backend migration:revert",
     "migration:show": "yarn workspace @karimvarela/backend migration:show"
   },
