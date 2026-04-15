@@ -1,0 +1,1 @@
+{"version":3,"file":"job.dto.d.ts","sourceRoot":"","sources":["job.dto.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,iBAAiB;IAChC,IAAI,EAAE,OAAO,oBAAoB,EAAE,GAAG,EAAE,CAAA;IACxC,SAAS,EAAE,OAAO,0BAA0B,EAAE,SAAS,EAAE,CAAA;IACzD,MAAM,EAAE,OAAO,sBAAsB,EAAE,KAAK,EAAE,CAAA;CAC/C"}
