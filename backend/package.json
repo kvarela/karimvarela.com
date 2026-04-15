@@ -15,7 +15,6 @@
     "scrape:blogs": "ts-node -r tsconfig-paths/register src/scripts/scrape-blogs.ts"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.30.0",
     "@google/generative-ai": "^0.21.0",
     "@karimvarela/shared": "^1.0.0",
     "@nestjs/common": "^10.4.0",
@@ -33,6 +32,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "fast-xml-parser": "^4.4.0",
+    "openai": "^4.68.0",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "pg": "^8.12.0",

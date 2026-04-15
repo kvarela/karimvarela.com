@@ -40,7 +40,7 @@ Open `backend/.env` and fill in the values:
   ```bash
   node -e "const b = require('bcryptjs'); console.log(b.hashSync('yourpassword', 12))"
   ```
-- **`ANTHROPIC_API_KEY`** — from console.anthropic.com (for AI blog generation)
+- **`OPENAI_API_KEY`** — from platform.openai.com (for AI blog generation)
 - **`GOOGLE_AI_API_KEY`** — from Google AI Studio (for Gemini image generation)
 
 Also create the web env file:
@@ -138,5 +138,5 @@ curl -X POST http://localhost:4000/api/admin/scrape/blogs \
 
 - **Frontend**: Next.js 14 (App Router), React 18, Chakra UI v3, Framer Motion, TypeScript
 - **Backend**: NestJS 11, TypeORM, PostgreSQL, JWT auth, TypeScript
-- **AI**: Anthropic Claude (blog generation), Google Gemini Imagen (image generation)
+- **AI**: OpenAI GPT-4o (blog generation), Google Gemini Imagen (image generation)
 - **Tooling**: Yarn workspaces, ESLint, Prettier
