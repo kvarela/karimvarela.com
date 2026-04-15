@@ -1,5 +1,5 @@
 'use client'
-import { Box, Flex, Text, IconButton, Drawer } from '@chakra-ui/react'
+import { Box, Flex, Text, IconButton } from '@chakra-ui/react'
 import Link from 'next/link'
 import { useState } from 'react'
 import { useActiveSection } from '@/hooks/useActiveSection'
