@@ -9,7 +9,6 @@ karimvarela.com/
 ├── shared/          # Shared TypeScript types and DTOs
 ├── backend/         # NestJS API (port 4000)
 ├── web/             # Next.js frontend (port 3000)
-├── docker-compose.yml
 └── .env.example
 ```
 
@@ -17,19 +16,17 @@ karimvarela.com/
 
 - Node.js 20+
 - Yarn 1.x (classic)
-- Docker + Docker Compose
+- PostgreSQL running locally with a database named `karimvarela`
+
+To create the database if it doesn't exist yet:
+
+```bash
+createdb karimvarela
+```
 
 ## Local Development Setup
 
-### 1. Start the database
-
-```bash
-docker compose up -d
-```
-
-This starts PostgreSQL on port 5432 and pgAdmin on port 5050 (login: `admin@local.dev` / `admin`).
-
-### 2. Configure environment variables
+### 1. Configure environment variables
 
 ```bash
 cp .env.example backend/.env
@@ -37,6 +34,7 @@ cp .env.example backend/.env
 
 Open `backend/.env` and fill in the values:
 
+- **`DATABASE_URL`** — adjust the username/password to match your local PostgreSQL setup if needed
 - **`JWT_SECRET`** — any long random string (32+ characters)
 - **`ADMIN_PASSWORD_HASH`** — bcrypt hash of your chosen admin password:
   ```bash
@@ -45,27 +43,25 @@ Open `backend/.env` and fill in the values:
 - **`ANTHROPIC_API_KEY`** — from console.anthropic.com (for AI blog generation)
 - **`GOOGLE_AI_API_KEY`** — from Google AI Studio (for Gemini image generation)
 
-The database URL, username, and CORS origins are pre-filled for local development.
-
 Also create the web env file:
 
 ```bash
 echo "NEXT_PUBLIC_API_URL=http://localhost:4000\nAPI_URL=http://localhost:4000" > web/.env.local
 ```
 
-### 3. Install dependencies
+### 2. Install dependencies
 
 ```bash
 yarn install
 ```
 
-### 4. Build the shared package
+### 3. Build the shared package
 
 ```bash
 yarn build:shared
 ```
 
-### 5. Run database migrations
+### 4. Run database migrations
 
 ```bash
 yarn migration:run
@@ -73,7 +69,7 @@ yarn migration:run
 
 This creates all tables (jobs, education, skills, blog_posts, blog_tags).
 
-### 6. Start the dev servers
+### 5. Start the dev servers
 
 ```bash
 yarn dev
@@ -81,7 +77,7 @@ yarn dev
 
 This starts both the API (`:4000`) and the web frontend (`:3000`) concurrently.
 
-### 7. Verify everything works
+### 6. Verify everything works
 
 ```bash
 # API health
@@ -141,6 +137,6 @@ curl -X POST http://localhost:4000/api/admin/scrape/blogs \
 ## Tech Stack
 
 - **Frontend**: Next.js 14 (App Router), React 18, Chakra UI v3, Framer Motion, TypeScript
-- **Backend**: NestJS 11, TypeORM, PostgreSQL 16, JWT auth, TypeScript
+- **Backend**: NestJS 11, TypeORM, PostgreSQL, JWT auth, TypeScript
 - **AI**: Anthropic Claude (blog generation), Google Gemini Imagen (image generation)
-- **Tooling**: Yarn workspaces, Docker Compose, ESLint, Prettier
+- **Tooling**: Yarn workspaces, ESLint, Prettier
