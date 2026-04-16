@@ -1,3 +1,8 @@
+export const EMAIL = 'karim.varela@gmail.com'
+
+export const RESUME_PDF_URL =
+  'https://docs.google.com/document/d/1jV6xFhvbxmpQYsl_ara-9Yr-5XhnBLruDCnbjoYRo0E'
+
 export const SOCIAL_LINKS = {
   linkedin: 'https://linkedin.com/in/karimvarela',
   github: 'https://github.com/kvarela',
@@ -12,6 +17,7 @@ export const NAV_ITEMS = [
   { label: 'Skills', href: '#skills' },
   { label: 'Education', href: '#education' },
   { label: 'Blog', href: '/blog' },
+  { label: 'Resume', href: '/resume' },
 ] as const
 
 export const PERSONAL_NAV_ITEMS = [

@@ -2,7 +2,7 @@ import { Box, Grid, Flex, Text } from '@chakra-ui/react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import type { BlogPostSummary, BlogTag, PaginatedResponse } from '@karimvarela/shared'
-import { MatrixRain } from '@/components/ui/MatrixRain'
+import { PageLayout } from '@/components/layout/PageLayout'
 import { Footer } from '@/components/layout/Footer'
 import { PostCard } from '@/components/blog/PostCard'
 
@@ -54,17 +54,14 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   const { data: posts, totalPages } = postsData
 
   return (
-    <Box minHeight="100vh" position="relative" style={{ background: '#0a0a0a' }}>
-      <MatrixRain />
-
-      <Box position="relative" zIndex={1}>
-        <Box
-          as="main"
-          px={{ base: 6, md: 12, lg: 20 }}
-          py={{ base: 8, lg: 16 }}
-          maxWidth="1200px"
-          mx="auto"
-        >
+    <PageLayout>
+      <Box
+        as="main"
+        px={{ base: 6, md: 12, lg: 20 }}
+        py={{ base: 8, lg: 16 }}
+        maxWidth="1200px"
+        mx="auto"
+      >
           {/* Back link */}
           <Box mb={8}>
             <Link href="/" style={{ textDecoration: 'none' }}>
@@ -214,7 +211,6 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
           <Footer />
         </Box>
-      </Box>
-    </Box>
+    </PageLayout>
   )
 }

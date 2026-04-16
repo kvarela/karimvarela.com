@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { BlogPost, BlogPostSummary, PaginatedResponse } from '@karimvarela/shared'
-import { MatrixRain } from '@/components/ui/MatrixRain'
+import { PageLayout } from '@/components/layout/PageLayout'
 import { Footer } from '@/components/layout/Footer'
 import { PostContent } from '@/components/blog/PostContent'
 import { NeonBadge } from '@/components/ui/NeonBadge'
@@ -72,17 +72,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   if (!post) notFound()
 
   return (
-    <Box minHeight="100vh" position="relative" style={{ background: '#0a0a0a' }}>
-      <MatrixRain />
-
-      <Box position="relative" zIndex={1}>
-        <Box
-          as="main"
-          px={{ base: 6, md: 12, lg: 20 }}
-          py={{ base: 8, lg: 16 }}
-          maxWidth="860px"
-          mx="auto"
-        >
+    <PageLayout>
+      <Box
+        as="main"
+        px={{ base: 6, md: 12, lg: 20 }}
+        py={{ base: 8, lg: 16 }}
+        maxWidth="860px"
+        mx="auto"
+      >
           {/* Back link */}
           <Box mb={8}>
             <Link href="/blog" style={{ textDecoration: 'none' }}>
@@ -240,7 +237,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           <Footer />
         </Box>
-      </Box>
-    </Box>
+    </PageLayout>
   )
 }
