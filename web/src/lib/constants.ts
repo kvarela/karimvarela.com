@@ -12,6 +12,7 @@ export const NAV_ITEMS = [
   { label: 'Skills', href: '#skills' },
   { label: 'Education', href: '#education' },
   { label: 'Blog', href: '/blog' },
+  { label: 'Resume', href: '/resume' },
 ] as const
 
 export const PERSONAL_NAV_ITEMS = [

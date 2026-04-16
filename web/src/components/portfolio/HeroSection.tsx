@@ -109,9 +109,7 @@ export function HeroSection() {
         >
           <Flex gap={4} mb={8} flexWrap="wrap">
             <chakra.a
-              href="https://docs.google.com/document/d/1jV6xFhvbxmpQYsl_ara-9Yr-5XhnBLruDCnbjoYRo0E"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/resume"
               display="inline-flex"
               alignItems="center"
               px={6}
