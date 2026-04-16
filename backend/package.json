@@ -7,7 +7,8 @@
     "build": "nest build",
     "start": "node dist/main",
     "typecheck": "tsc --noEmit -p tsconfig.json",
-    "lint": "eslint \"{src}/**/*.ts\" --fix",
+    "lint": "eslint \"src/**/*.ts\"",
+    "lint:fix": "eslint \"src/**/*.ts\" --fix",
     "migration:generate": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:generate -d src/data-source.ts src/migrations/Migration",
     "migration:run": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run -d src/data-source.ts",
     "migration:run:prod": "node ./node_modules/typeorm/cli.js migration:run -d dist/data-source.js",
@@ -51,6 +52,9 @@
     "typescript": "^5.6.2"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.0",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0"
   }
