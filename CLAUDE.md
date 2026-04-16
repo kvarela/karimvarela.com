@@ -17,11 +17,13 @@ Before building anything new, check if a shared component already covers the nee
 | `SectionHeading` | Every section title (takes `number` + `title` props) |
 | `GlowCard` | Any card with a neon-glow border |
 | `NeonBadge` | Inline tags, skill chips, labels |
-| `MatrixRain` | Full-page animated background (used on every page) |
+| `MatrixRain` | Animated background — use via `PageLayout`, never directly |
+| `LinkedInIcon` / `GitHubIcon` / `InstagramIcon` | Social icons (accept optional `size` prop) |
 
 ### Layout (`web/src/components/layout/`)
 | Component | Use for |
 |-----------|---------|
+| `PageLayout` | **Required wrapper for every non-admin page.** Provides dark background + MatrixRain automatically — never add MatrixRain manually |
 | `SidebarNav` | Primary nav — handles desktop sidebar + mobile drawer in one instance |
 | `Footer` | Page footer — use on every page |
 
@@ -40,6 +42,7 @@ These accept typed props from the shared package and should be reused across pag
 4. **Shared types from `@karimvarela/shared`.** Import `Job`, `Education`, `Skill`, etc. from the shared package — never redefine them.
 5. **Server components for data fetching.** Fetch portfolio data in server components (like `page.tsx`) and pass down as props. Child components that use Framer Motion must be `'use client'`.
 6. **Nav items in `constants.ts`.** Add new routes to `NAV_ITEMS` (or a page-specific array like `PERSONAL_NAV_ITEMS`) in `web/src/lib/constants.ts`.
+7. **Contact info from `constants.ts`.** Use `EMAIL` for the email address and `RESUME_PDF_URL` for the Google Docs resume link — never hardcode these inline.
 
 ## Development
 

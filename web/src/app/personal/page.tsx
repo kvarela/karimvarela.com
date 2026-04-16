@@ -1,7 +1,7 @@
 import { Box, Grid, Text, Flex } from '@chakra-ui/react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { MatrixRain } from '@/components/ui/MatrixRain'
+import { PageLayout } from '@/components/layout/PageLayout'
 import { Footer } from '@/components/layout/Footer'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { GlowCard } from '@/components/ui/GlowCard'
@@ -97,15 +97,12 @@ function PersonalSidebarNav() {
 
 export default function PersonalPage() {
   return (
-    <Box minHeight="100vh" position="relative" style={{ background: '#0a0a0a' }}>
-      <MatrixRain />
-
-      <Box position="relative" zIndex={1}>
-        <Grid
-          templateColumns={{ base: '1fr', lg: '280px 1fr' }}
-          minHeight="100vh"
-        >
-          <PersonalSidebarNav />
+    <PageLayout>
+      <Grid
+        templateColumns={{ base: '1fr', lg: '280px 1fr' }}
+        minHeight="100vh"
+      >
+        <PersonalSidebarNav />
 
           <Box
             as="main"
@@ -409,7 +406,6 @@ export default function PersonalPage() {
             <Footer />
           </Box>
         </Grid>
-      </Box>
-    </Box>
+    </PageLayout>
   )
 }
