@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  frontend:
+    name: Frontend – Type Check & Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build shared package
+        run: yarn workspace @karimvarela/shared build
+
+      - name: Type check
+        run: yarn workspace @karimvarela/web typecheck
+
+      - name: Lint
+        run: yarn workspace @karimvarela/web lint
+
+  backend:
+    name: Backend – Type Check & Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build shared package
+        run: yarn workspace @karimvarela/shared build
+
+      - name: Type check
+        run: yarn workspace @karimvarela/backend typecheck
+
+      - name: Lint
+        run: yarn workspace @karimvarela/backend lint

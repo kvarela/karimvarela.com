@@ -1,67 +1,81 @@
-# karimvarela.com — Claude Guidance
+# karimvarela.com
 
-## Project Overview
+Personal website monorepo built with Next.js (frontend) and NestJS (backend).
 
-Monorepo with three packages:
-- `web/` — Next.js 14 App Router frontend (Chakra UI v3, Framer Motion)
-- `backend/` — NestJS API with TypeORM + PostgreSQL
-- `shared/` — TypeScript types and DTOs shared between web and backend
+## Structure
 
-## Shared Components — Use Them First
-
-Before building anything new, check if a shared component already covers the need.
-
-### UI Primitives (`web/src/components/ui/`)
-| Component | Use for |
-|-----------|---------|
-| `SectionHeading` | Every section title (takes `number` + `title` props) |
-| `GlowCard` | Any card with a neon-glow border |
-| `NeonBadge` | Inline tags, skill chips, labels |
-| `MatrixRain` | Animated background — use via `PageLayout`, never directly |
-| `LinkedInIcon` / `GitHubIcon` / `InstagramIcon` | Social icons (accept optional `size` prop) |
-
-### Layout (`web/src/components/layout/`)
-| Component | Use for |
-|-----------|---------|
-| `PageLayout` | **Required wrapper for every non-admin page.** Provides dark background + MatrixRain automatically — never add MatrixRain manually |
-| `SidebarNav` | Primary nav — handles desktop sidebar + mobile drawer in one instance |
-| `Footer` | Page footer — use on every page |
-
-### Portfolio Sections (`web/src/components/portfolio/`)
-These accept typed props from the shared package and should be reused across pages:
-- `HeroSection` — name/tagline/CTA (home page intro)
-- `AboutSection` — bio and tech stack
-- `ExperienceSection` — jobs list (accepts `jobs: Job[]`)
-- `SkillsSection` — grouped skill badges (accepts `skills: Skill[]`)
-- `EducationSection` — education cards (accepts `education: Education[]`)
-
-### Rules
-1. **Reuse before creating.** Check `components/ui/`, `components/layout/`, and `components/portfolio/` first.
-2. **Consistent layout pattern.** Every full page uses: `MatrixRain` background → `Grid` with `SidebarNav` + main content → `Footer`.
-3. **Colors and fonts from the design system.** Neon green `#00ff41` / `#39ff14`, dark bg `#0a0a0a`, `var(--font-mono)` for UI text.
-4. **Shared types from `@karimvarela/shared`.** Import `Job`, `Education`, `Skill`, etc. from the shared package — never redefine them.
-5. **Server components for data fetching.** Fetch portfolio data in server components (like `page.tsx`) and pass down as props. Child components that use Framer Motion must be `'use client'`.
-6. **Nav items in `constants.ts`.** Add new routes to `NAV_ITEMS` (or a page-specific array like `PERSONAL_NAV_ITEMS`) in `web/src/lib/constants.ts`.
-7. **Contact info from `constants.ts`.** Use `EMAIL` for the email address and `RESUME_PDF_URL` for the Google Docs resume link — never hardcode these inline.
-
-## Development
-
-```bash
-# Install all workspace deps
-yarn install
-
-# Run everything (web + backend)
-yarn dev
-
-# Web only
-yarn workspace web dev
-
-# Backend only
-yarn workspace backend dev
+```
+.
+├── web/        # Next.js 14 frontend (port 3000)
+├── backend/    # NestJS 10 API server (port 4000)
+└── shared/     # Shared TypeScript types and DTOs
 ```
 
-Web runs on http://localhost:3000, API on http://localhost:4000.
+## Tech Stack
 
-## Data Flow
+- **Frontend**: Next.js 14, React 18, TypeScript, Chakra UI v3, Zustand, Framer Motion
+- **Backend**: NestJS 10, TypeORM, PostgreSQL, JWT auth, Swagger
+- **Shared**: TypeScript types/DTOs only
+- **Package manager**: Yarn 1.x workspaces
 
-Portfolio data (jobs, education, skills) is fetched from `/api/portfolio` at build time with hourly ISR revalidation. The admin dashboard at `/admin` has controls to re-import from Google Docs.
+## Setup
+
+```bash
+# Install all dependencies
+yarn install
+
+# Copy env files
+cp .env.example .env
+cp backend/.env.example backend/.env
+
+# Start dev servers (frontend + backend concurrently)
+yarn dev
+```
+
+## CI Checks
+
+Two checks run on every push and pull request (`.github/workflows/ci.yml`):
+
+| Check | Frontend | Backend |
+|-------|----------|---------|
+| TypeScript | `tsc --noEmit` | `tsc --noEmit` |
+| ESLint | `next lint` | `eslint "{src}/**/*.ts"` |
+
+**Both checks must pass before pushing code.**
+
+Run them locally before pushing:
+
+```bash
+# Run all checks across all workspaces
+yarn typecheck
+yarn lint
+
+# Or per workspace
+yarn workspace @karimvarela/web typecheck
+yarn workspace @karimvarela/web lint
+yarn workspace @karimvarela/backend typecheck
+yarn workspace @karimvarela/backend lint
+```
+
+## Common Scripts
+
+```bash
+yarn dev                  # Start frontend + backend in watch mode
+yarn build                # Build all packages (shared → backend → web)
+yarn typecheck            # TypeScript check across all workspaces
+yarn lint                 # ESLint across all workspaces
+yarn lint:fix             # Auto-fix lint issues (backend: yarn workspace @karimvarela/backend lint:fix)
+yarn format               # Prettier format all source files
+```
+
+### Database Migrations
+
+```bash
+yarn migration:generate   # Generate a new migration
+yarn migration:run        # Run pending migrations (local)
+yarn migration:revert     # Revert last migration
+```
+
+## Environment Variables
+
+See `.env.example` and `backend/.env.example` for required variables.
