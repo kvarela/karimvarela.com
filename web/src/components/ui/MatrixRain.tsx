@@ -35,8 +35,8 @@ export function MatrixRain() {
       if (!ctx || !canvas) return
       frameCount++
 
-      // Run animation logic every 3rd frame for slower speed
-      if (frameCount % 3 === 0) {
+      // Run animation logic every 6th frame for slower speed
+      if (frameCount % 6 === 0) {
         // Semi-transparent black to create fade trail effect
         ctx.fillStyle = 'rgba(10, 10, 10, 0.05)'
         ctx.fillRect(0, 0, canvas.width, canvas.height)
@@ -78,7 +78,7 @@ export function MatrixRain() {
         height: '100vh',
         pointerEvents: 'none',
         zIndex: 0,
-        opacity: 0.18,
+        opacity: 0.225,
       }}
       aria-hidden="true"
     />
