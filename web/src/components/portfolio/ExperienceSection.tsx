@@ -15,7 +15,7 @@ interface ExperienceSectionProps {
 function formatDate(dateStr: string | null): string {
   if (!dateStr) return 'Present'
   const date = new Date(dateStr)
-  return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+  return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' })
 }
 
 export function ExperienceSection({ jobs }: ExperienceSectionProps) {

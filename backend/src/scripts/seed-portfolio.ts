@@ -18,7 +18,7 @@ const JOB_DATA: Partial<Job>[] = [
     ],
     location: 'Remote',
     startDate: '2023-01-01',
-    endDate: null,
+    endDate: '2026-01-01',
     logoUrl: null,
     companyUrl: null,
     sortOrder: 1,
@@ -292,12 +292,10 @@ async function seed(): Promise<void> {
   const educationRepo = AppDataSource.getRepository(Education)
   const skillRepo = AppDataSource.getRepository(Skill)
 
-  const existingJobs = await jobRepo.count()
-  if (existingJobs > 0) {
-    console.log(`[seed-portfolio] ${existingJobs} jobs already exist — skipping seed.`)
-    await AppDataSource.destroy()
-    return
-  }
+  console.log('[seed-portfolio] Clearing existing data...')
+  await jobRepo.clear()
+  await educationRepo.clear()
+  await skillRepo.clear()
 
   console.log('[seed-portfolio] Seeding jobs...')
   await jobRepo.save(JOB_DATA.map((j) => jobRepo.create(j)))
