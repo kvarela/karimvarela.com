@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import type { Education } from '@karimvarela/shared'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { GlowCard } from '@/components/ui/GlowCard'
+import { MatrixBunny } from '@/components/ui/MatrixBunny'
 
 const MotionBox = motion(Box)
 
@@ -25,9 +26,7 @@ export function EducationSection({ education }: EducationSectionProps) {
 
       <Flex direction="column" gap={4}>
         {sorted.length === 0 && (
-          <Text color="rgba(204,255,204,0.4)" fontFamily="var(--font-mono), monospace" fontSize="sm">
-            Loading education...
-          </Text>
+          <MatrixBunny message="Loading education..." />
         )}
 
         {sorted.map((edu, index) => (

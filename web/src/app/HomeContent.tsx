@@ -1,28 +1,19 @@
 'use client'
 import { Box, Grid } from '@chakra-ui/react'
-import type { Job, Education, Skill } from '@karimvarela/shared'
 import { PageLayout } from '@/components/layout/PageLayout'
 import { SidebarNav } from '@/components/layout/SidebarNav'
 import { Footer } from '@/components/layout/Footer'
 import { HeroSection } from '@/components/portfolio/HeroSection'
 import { AboutSection } from '@/components/portfolio/AboutSection'
-import { ExperienceSection } from '@/components/portfolio/ExperienceSection'
-import { SkillsSection } from '@/components/portfolio/SkillsSection'
-import { EducationSection } from '@/components/portfolio/EducationSection'
 
 interface HomeContentProps {
-  jobs: Job[]
-  education: Education[]
-  skills: Skill[]
+  children: React.ReactNode
 }
 
-export function HomeContent({ jobs, education, skills }: HomeContentProps) {
+export function HomeContent({ children }: HomeContentProps) {
   return (
     <PageLayout>
-      <Grid
-        templateColumns={{ base: '1fr', lg: '280px 1fr' }}
-        minHeight="100vh"
-      >
+      <Grid templateColumns={{ base: '1fr', lg: '280px 1fr' }} minHeight="100vh">
         <SidebarNav />
         <Box
           as="main"
@@ -32,9 +23,7 @@ export function HomeContent({ jobs, education, skills }: HomeContentProps) {
         >
           <HeroSection />
           <AboutSection />
-          <ExperienceSection jobs={jobs} />
-          <SkillsSection skills={skills} />
-          <EducationSection education={education} />
+          {children}
           <Footer />
         </Box>
       </Grid>

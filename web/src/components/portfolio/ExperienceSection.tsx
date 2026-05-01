@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import type { Job } from '@karimvarela/shared'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { GlowCard } from '@/components/ui/GlowCard'
-import { NeonBadge } from '@/components/ui/NeonBadge'
+import { MatrixBunny } from '@/components/ui/MatrixBunny'
 
 const MotionBox = motion(Box)
 
@@ -27,9 +27,7 @@ export function ExperienceSection({ jobs }: ExperienceSectionProps) {
 
       <Flex direction="column" gap={6}>
         {visibleJobs.length === 0 && (
-          <Text color="rgba(204,255,204,0.4)" fontFamily="var(--font-mono), monospace" fontSize="sm">
-            Loading experience...
-          </Text>
+          <MatrixBunny message="Loading experience..." />
         )}
 
         {visibleJobs.map((job, index) => (
@@ -43,10 +41,7 @@ export function ExperienceSection({ jobs }: ExperienceSectionProps) {
             <GlowCard>
               <Flex direction={{ base: 'column', md: 'row' }} gap={{ base: 3, md: 6 }}>
                 {/* Date range */}
-                <Box
-                  flexShrink={0}
-                  width={{ base: 'auto', md: '140px' }}
-                >
+                <Box flexShrink={0} width={{ base: 'auto', md: '140px' }}>
                   <Text
                     fontFamily="var(--font-mono), monospace"
                     fontSize="xs"
@@ -69,11 +64,7 @@ export function ExperienceSection({ jobs }: ExperienceSectionProps) {
                     >
                       {job.title}
                     </Text>
-                    <Text
-                      fontFamily="var(--font-mono), monospace"
-                      fontSize="md"
-                      color="#00ff41"
-                    >
+                    <Text fontFamily="var(--font-mono), monospace" fontSize="md" color="#00ff41">
                       @{' '}
                       {job.companyUrl ? (
                         <chakra.a
@@ -103,12 +94,7 @@ export function ExperienceSection({ jobs }: ExperienceSectionProps) {
                   )}
 
                   {job.description && (
-                    <Text
-                      fontSize="sm"
-                      color="rgba(204,255,204,0.7)"
-                      lineHeight={1.7}
-                      mb={3}
-                    >
+                    <Text fontSize="sm" color="rgba(204,255,204,0.7)" lineHeight={1.7} mb={3}>
                       {job.description}
                     </Text>
                   )}
@@ -117,7 +103,9 @@ export function ExperienceSection({ jobs }: ExperienceSectionProps) {
                     <Box mb={4}>
                       {job.highlights.map((highlight, i) => (
                         <Flex key={i} gap={2} mb={1} align="flex-start">
-                          <Text color="#00ff41" fontSize="xs" mt={1} flexShrink={0}>▹</Text>
+                          <Text color="#00ff41" fontSize="xs" mt={1} flexShrink={0}>
+                            ▹
+                          </Text>
                           <Text fontSize="sm" color="rgba(204,255,204,0.65)" lineHeight={1.6}>
                             {highlight}
                           </Text>
