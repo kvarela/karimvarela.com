@@ -1,9 +1,73 @@
 'use client'
+import { useState } from 'react'
 import { Box, Grid, Text, chakra } from '@chakra-ui/react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 
 const MotionBox = motion(Box)
+
+const techDescriptions: Record<string, string> = {
+  'TypeScript': 'A strongly-typed superset of JavaScript that compiles to plain JS. Static type checking catches bugs at compile time, improves IDE support, and makes large codebases easier to maintain.',
+  'Node.js / NestJS': 'Node.js is a V8-based JavaScript runtime for server-side code. NestJS is a TypeScript framework built on top of it, bringing Angular-inspired modules, controllers, and dependency injection to backend development.',
+  'React / Next.js': 'React is a declarative UI library for building component-based interfaces. Next.js extends it with server-side rendering, static generation, file-based routing, and API routes — making full-stack development seamless.',
+  'PostgreSQL': 'A powerful open-source relational database renowned for its reliability, ACID compliance, and rich feature set — including JSONB, full-text search, and advanced indexing for complex data workloads.',
+  'Redis': 'An ultra-fast in-memory data store used for caching, session management, pub/sub messaging, and rate limiting. Its sub-millisecond response times make it ideal for reducing database load.',
+  'Docker / K8s': 'Docker packages applications into portable, reproducible containers. Kubernetes (K8s) orchestrates those containers at scale — handling deployment, autoscaling, load balancing, and self-healing across clusters.',
+}
+
+function TechItem({ tech }: { tech: string }) {
+  const [isHovered, setIsHovered] = useState(false)
+  return (
+    <Box
+      position="relative"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <Text
+        fontFamily="var(--font-mono), monospace"
+        fontSize="sm"
+        color={isHovered ? 'rgba(204,255,204,0.9)' : 'rgba(204,255,204,0.6)'}
+        display="flex"
+        alignItems="center"
+        gap={2}
+        cursor="default"
+        style={{ transition: 'color 0.2s' }}
+      >
+        <Box as="span" color="#00ff41" mr={2}>▹</Box>
+        {tech}
+      </Text>
+      <AnimatePresence>
+        {isHovered && (
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 6 }}
+            transition={{ duration: 0.15 }}
+            style={{
+              position: 'absolute',
+              bottom: 'calc(100% + 8px)',
+              left: 0,
+              zIndex: 100,
+              width: '260px',
+              padding: '10px 14px',
+              background: 'rgba(10, 20, 10, 0.97)',
+              border: '1px solid rgba(0, 255, 65, 0.3)',
+              borderRadius: '6px',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.6), 0 0 12px rgba(0,255,65,0.08)',
+              color: 'rgba(204,255,204,0.8)',
+              fontSize: '12px',
+              lineHeight: '1.6',
+              fontFamily: 'var(--font-mono), monospace',
+              pointerEvents: 'none',
+            }}
+          >
+            {techDescriptions[tech]}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </Box>
+  )
+}
 
 export function AboutSection() {
   return (
@@ -80,18 +144,7 @@ export function AboutSection() {
                   'Redis',
                   'Docker / K8s',
                 ].map((tech) => (
-                  <Text
-                    key={tech}
-                    fontFamily="var(--font-mono), monospace"
-                    fontSize="sm"
-                    color="rgba(204,255,204,0.6)"
-                    display="flex"
-                    alignItems="center"
-                    gap={2}
-                  >
-                    <Box as="span" color="#00ff41" mr={2}>▹</Box>
-                    {tech}
-                  </Text>
+                  <TechItem key={tech} tech={tech} />
                 ))}
               </Grid>
             </Box>
