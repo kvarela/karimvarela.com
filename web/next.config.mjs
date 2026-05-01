@@ -7,7 +7,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'cdn-images-1.medium.com' },
     ],
   },
-  transpilePackages: ['@karimvarela/shared'],
+  transpilePackages: ['@karimvarela/shared', '@chakra-ui/react'],
 }
 
 export default nextConfig
