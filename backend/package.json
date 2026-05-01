@@ -15,7 +15,8 @@
     "migration:revert": "ts-node -r tsconfig-paths/register $(node -p \"require.resolve('typeorm/cli')\") migration:revert -d src/data-source.ts",
     "migration:show": "ts-node -r tsconfig-paths/register $(node -p \"require.resolve('typeorm/cli')\") migration:show -d src/data-source.ts",
     "scrape:blogs": "ts-node -r tsconfig-paths/register src/scripts/scrape-blogs.ts",
-    "seed:portfolio": "ts-node -r tsconfig-paths/register src/scripts/seed-portfolio.ts"
+    "seed:portfolio": "ts-node -r tsconfig-paths/register src/scripts/seed-portfolio.ts",
+    "seed:portfolio:prod": "node dist/scripts/seed-portfolio.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
