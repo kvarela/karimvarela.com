@@ -80,7 +80,7 @@ export function AboutSection() {
       >
         <SectionHeading number="01" title="About Me" />
 
-        <Grid templateColumns={{ base: '1fr', md: '3fr 2fr' }} gap={12} alignItems="start">
+        <Box>
           {/* Bio text */}
           <Box>
             <Text
@@ -150,65 +150,7 @@ export function AboutSection() {
             </Box>
           </Box>
 
-          {/* Photo placeholder */}
-          <Box>
-            <Box
-              position="relative"
-              display="inline-block"
-              width="100%"
-            >
-              {/* Photo frame with glow */}
-              <Box
-                width="100%"
-                paddingBottom="100%"
-                position="relative"
-                borderRadius="lg"
-                overflow="hidden"
-                border="2px solid rgba(0,255,65,0.25)"
-                style={{
-                  boxShadow: '0 0 30px rgba(0,255,65,0.1), inset 0 0 30px rgba(0,0,0,0.5)',
-                }}
-              >
-                <Box
-                  position="absolute"
-                  inset={0}
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  style={{
-                    background: 'linear-gradient(135deg, #0d1a0d 0%, #0a0a0a 100%)',
-                  }}
-                >
-                  {/* Placeholder avatar */}
-                  <Box textAlign="center">
-                    <Text fontSize="5xl" mb={2}>
-                      👨‍💻
-                    </Text>
-                    <Text
-                      fontFamily="var(--font-mono), monospace"
-                      fontSize="xs"
-                      color="rgba(0,255,65,0.4)"
-                    >
-                      Venice, CA
-                    </Text>
-                  </Box>
-                </Box>
-              </Box>
-
-              {/* Decorative offset border */}
-              <Box
-                position="absolute"
-                top="12px"
-                left="12px"
-                right="-12px"
-                bottom="-12px"
-                border="2px solid rgba(0,255,65,0.15)"
-                borderRadius="lg"
-                zIndex={-1}
-              />
-            </Box>
-          </Box>
-        </Grid>
+        </Box>
       </MotionBox>
     </Box>
   )
