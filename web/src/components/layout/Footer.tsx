@@ -29,6 +29,13 @@ export function Footer() {
           fontFamily="var(--font-mono), monospace"
           color="rgba(204,255,204,0.4)"
         >
+          Made with ❤️ in Venice Beach, California
+        </Text>
+        <Text
+          fontSize="xs"
+          fontFamily="var(--font-mono), monospace"
+          color="rgba(204,255,204,0.4)"
+        >
           © {year} Karim Varela
         </Text>
       </Flex>
