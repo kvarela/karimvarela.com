@@ -43,6 +43,41 @@ export const metadata: Metadata = {
   },
 }
 
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Karim Varela',
+    url: 'https://karimvarela.com',
+    jobTitle: 'Software Engineer & Entrepreneur',
+    description:
+      'Software engineer and entrepreneur based in Venice, CA. Building at the intersection of code and community.',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Venice',
+      addressRegion: 'CA',
+      addressCountry: 'US',
+    },
+    sameAs: [
+      'https://www.linkedin.com/in/karimvarela',
+      'https://github.com/kvarela',
+      'https://karimvarela.medium.com',
+      'https://stackoverflow.com/users/karim-varela',
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Karim Varela',
+    url: 'https://karimvarela.com',
+    inLanguage: 'en-US',
+    publisher: {
+      '@type': 'Person',
+      name: 'Karim Varela',
+    },
+  },
+]
+
 export default function RootLayout({
   children,
 }: {
@@ -55,6 +90,10 @@ export default function RootLayout({
       className={`${inter.variable} ${jetbrainsMono.variable}`}
     >
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Providers>{children}</Providers>
       </body>
     </html>
